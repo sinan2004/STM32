@@ -12,7 +12,7 @@ const uint8_t Sine_Table[256] ={50,51,52,54,55,56,57,59,60,61,62,63,65,66,67,68,
 								23,24,25,26,28,29,30,31,32,33,34,35,37,38,39,40,41,43,44,45,46,48,49 };
 uint16_t phase_increment = 0;
 uint16_t increment = 0 ;
-uint16_t sin_pos = 0 ;
+uint8_t sin_pos = 0 ;
 int period = 0 ;
 uint16_t on_call = 0 ;
 uint16_t frequency = 50;
@@ -39,12 +39,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     	TIM2->CCR3 = Sine_Table[sin_pos];
     	phase_increment += increment;
     	sin_pos = phase_increment >>8;
-    	if ( sin_pos >=256)
-    	{
-    		period++;
-    		sin_pos= 0;
-
-    	}
+    	
     }
 
 }
